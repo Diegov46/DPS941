@@ -8,7 +8,7 @@ const SearchBarAdd = ({ placeholderText, showModal }) => {
   const onChangeSearch = (query) => setSearchQuery(query);
 
   return (
-    <Appbar.Header>
+    <Appbar.Header style={{backgroundColor:'#f2f2f2'}}>
       <Searchbar
         placeholder={placeholderText || 'Buscar'}
         onChangeText={onChangeSearch}
@@ -23,8 +23,9 @@ const SearchBarAdd = ({ placeholderText, showModal }) => {
 const styles = StyleSheet.create({
   searchbar: {
     marginHorizontal: 8,
-    borderRadius: 20,
-    width: '85%'
+    borderRadius: 50,
+    width: '85%',
+    backgroundColor: '#dfe8e6'
   },
 });
 
