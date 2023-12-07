@@ -1,13 +1,14 @@
-// ListItem.js
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-const ListItem = ({ nombre, dui, sexo, hora}) => {
+const ListItem = ({ paciente: { nombre, dui, sexo, altura, responsable }, hora }) => {
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.nombre}>{nombre}</Text>
       <Text>{dui}</Text>
       <Text>{sexo}</Text>
+      <Text>{altura}</Text>
+      <Text>{responsable}</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.hora}>{hora}</Text>
       </View>
@@ -23,7 +24,7 @@ const styles = StyleSheet.create({
     padding: 2,
     backgroundColor: '#B4B8BB',
     borderRadius: 10,
-    justifyContent:'space-around'
+    justifyContent: 'space-around',
   },
   nombre: {
     fontSize: 20,
@@ -39,8 +40,8 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontSize: 20,
     marginRight: 10,
-    backgroundColor: '#fca5b6'
-  }
+    backgroundColor: '#fca5b6',
+  },
 });
 
 export default ListItem;
