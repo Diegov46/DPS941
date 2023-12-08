@@ -3,6 +3,9 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import QuotesScreen from '../screens/Quotes';
+import DoctorsScreen from '../screens/Doctors';
+import Welcome from '../screens/Welcome';
+
 const Tab = createBottomTabNavigator();
 
 const AppNavigator = () => {
@@ -12,7 +15,7 @@ const AppNavigator = () => {
     >
       <Tab.Screen
         name="Doctores"
-        component={QuotesScreen}
+        component={DoctorsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user-md" size={size} color={color} />
@@ -46,6 +49,7 @@ const AppNavigator = () => {
           ),
         }}
       />
+
     </Tab.Navigator>
   );
 };
