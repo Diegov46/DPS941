@@ -24,7 +24,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Pacientes"
-        component={QuotesScreen}
+        component={DoctorsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={size} color={color} />
@@ -42,7 +42,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Perfil"
-        component={QuotesScreen}
+        component={DoctorsScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <MaterialIcons name="person" size={size} color={color} />
