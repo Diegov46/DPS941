@@ -5,10 +5,10 @@ const ListItem = ({ paciente: { nombre, dui, sexo, altura, responsable }, hora }
   return (
     <View style={styles.itemContainer}>
       <Text style={styles.nombre}>{nombre}</Text>
-      <Text>{dui}</Text>
-      <Text>{sexo}</Text>
-      <Text>{altura}</Text>
-      <Text>{responsable}</Text>
+      <Text>Dui: {dui}</Text>
+      <Text>Sexo: {sexo}</Text>
+      <Text>Altura: {altura}m</Text>
+      <Text>Responsable: {responsable}</Text>
       <View style={styles.infoContainer}>
         <Text style={styles.hora}>{hora}</Text>
       </View>

@@ -25,20 +25,28 @@ const Quotes = () => {
   const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
-    // Utiliza Axios para obtener datos de la API
-    axios.get('http://localhost:8080/Cita/All')
-      .then(response => {
-        // Actualiza el estado con los datos obtenidos
-        setListaDatos(response.data);
-      })
-      .catch(error => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://192.168.56.1:8080/Cita/All');
+        //console.log('Datos de la API:', response.data);
+        const formattedData = response.data.map(item => ({
+          ...item,
+          fecha: formatDate(item.fecha),
+        }));
+        
+        setListaDatos(formattedData);
+      } catch (error) {
         console.error('Error al obtener datos de la API:', error);
-      });
-  }, []);
+        console.error('Error details:', error.message, error.stack);
+      }
+    };
 
+    fetchData();
+  }, []);
   useEffect(() => {
     // Creamos un objeto con las fechas marcadas en el formato requerido
     const markedDatesObject = {};
+    console.log(listaDatos);
     listaDatos.forEach(item => {
       markedDatesObject[item.fecha] = {
         customStyles: {
@@ -57,6 +65,7 @@ const Quotes = () => {
 
   useEffect(() => {
     const filtered = listaDatos.filter(item => item.fecha === selectedDate);
+    //console.log(filtered);
     setFilteredDatos(filtered);
   }, [selectedDate]);
 
@@ -72,6 +81,17 @@ const Quotes = () => {
     setSelectedDate(day.dateString);
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  };
+  
+
+  
   return (
     <SafeAreaProvider>
     <View style={styles.container}>
