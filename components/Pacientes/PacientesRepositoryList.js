@@ -1,7 +1,7 @@
 // RepositoryList.js
 import React, { useState, useEffect } from "react";
 import { View, Text, FlatList, StyleSheet } from "react-native";
-import RepositoryItem from "../Doctores/DoctoresRepositoryItem.js";
+import RepositoryItem from "../Pacientes/PacientesRepositoryItem.js";
 
 const RepositoryList = () => {
     const [doctors, setDoctors] = useState([]);

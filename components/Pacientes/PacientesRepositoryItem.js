@@ -5,11 +5,17 @@ import StyledText from './StyledText';
 const RespositoryItem = (repo) => (
     <View key={repo.id} style={{ padding: 20, paddingBottom: 5, paddingTop: 5, }}>
         <View style={styles.especialidad}>
-            <Image style={styles.image} source={{ uri: repo.img }}></Image>
+            <Image style={styles.image} source={{ uri: repo.dui}}></Image>
             <View>
-                <StyledText big blue>{repo.nombre} </StyledText>
-                <StyledText text >{repo.especialidad} </StyledText>
-                <StyledText bold>{repo.contacto} </StyledText>
+                <StyledText big blue>{repo.dui} </StyledText>
+                <StyledText text >{repo.nombre} </StyledText>
+                <StyledText bold>{repo.edad} </StyledText>
+                <StyledText bold>{repo.sexo} </StyledText>
+                <StyledText bold>{repo.altura} </StyledText>
+                <StyledText bold>{repo.peso} </StyledText>
+                <StyledText bold>{repo.responsable} </StyledText>
+                <StyledText bold>{repo.fecha_Inscripcion} </StyledText>
+
             </View>
 
         </View>

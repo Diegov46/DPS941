@@ -4,6 +4,7 @@ import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
 
 import QuotesScreen from '../screens/Quotes';
 import DoctorsScreen from '../screens/Doctors';
+import PacientesScreen from '../screens/Pacientes';
 import Welcome from '../screens/Welcome';
 
 const Tab = createBottomTabNavigator();
@@ -24,7 +25,7 @@ const AppNavigator = () => {
       />
       <Tab.Screen
         name="Pacientes"
-        component={DoctorsScreen}
+        component={PacientesScreen}
         options={{
           tabBarIcon: ({ color, size }) => (
             <FontAwesome name="user" size={size} color={color} />

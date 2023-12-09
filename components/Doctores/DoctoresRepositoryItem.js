@@ -8,8 +8,8 @@ const RespositoryItem = (repo) =>(
             <Image style={styles.image} source={{uri: repo.img}}></Image>
             <View>
             <StyledText big blue>{repo.nombre} </StyledText>
-            <StyledText text >{repo.especialidad} </StyledText>
-            <StyledText bold>{repo.contacto} </StyledText>
+                <StyledText text >{repo.tipoUsuario.nombre_Tipo_Usuario} </StyledText>
+                <StyledText bold>{repo.email} </StyledText>
             </View>
             
         </View>   
