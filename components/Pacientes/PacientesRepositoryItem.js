@@ -6,14 +6,14 @@ const RespositoryItem = (repo) => (
     <View key={repo.id} style={{ padding: 20, paddingBottom: 5, paddingTop: 5, }}>
         <View style={styles.especialidad}>
             <View>
-                <StyledText big blue>{repo.dui} </StyledText>
-                <StyledText text >{repo.nombre} </StyledText>
-                <StyledText bold>{repo.edad} </StyledText>
-                <StyledText bold>{repo.sexo} </StyledText>
-                <StyledText bold>{repo.altura} </StyledText>
-                <StyledText bold>{repo.peso} </StyledText>
-                <StyledText bold>{repo.responsable} </StyledText>
-                <StyledText bold>{repo.fecha_Inscripcion} </StyledText>
+                <StyledText bold>Dui:{repo.dui} </StyledText>
+                <StyledText bold>Nombre:{repo.nombre} </StyledText>
+                <StyledText bold>Edad:{repo.edad} </StyledText>
+                <StyledText bold>Sexo:{repo.sexo} </StyledText>
+                <StyledText bold>Altura:{repo.altura} </StyledText>
+                <StyledText bold>Peso:{repo.peso} </StyledText>
+                <StyledText bold>Responsable:{repo.responsable} </StyledText>
+                <StyledText bold>Fecha Ingreso:{repo.fecha_Inscripcion} </StyledText>
 
             </View>
 

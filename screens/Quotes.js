@@ -25,7 +25,7 @@ const Quotes = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const url = "192.168.2.113:8080"
+  const url = "localhost:8080"
 
   // Campos del formulario
   const [selectedDateForm, setSelectedDateForm] = useState('');
@@ -136,7 +136,7 @@ const Quotes = () => {
     <SafeAreaProvider>
       <View style={styles.container}>
         <Title>Historial de Citas</Title>
-        <SearchBarAdd placeholderText="Encontrar un paciente" showModal={showModal} />
+        <SearchBarAdd placeholderText="Encontrar Cita" showModal={showModal} />
         {/** Buscar por dui o por paciente*/}
         <StatusBar style="auto" />
         <CalendarCMP onDayPress={onDayPress} markedDates={markedDates} />
