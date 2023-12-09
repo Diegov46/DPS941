@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { StatusBar, Modal, StyleSheet, View, ScrollView, Text, TouchableOpacity, TextInput } from 'react-native';
-import RepositoryList from '../components/doct/RepositoryList';
+import RepositoryList from '../components/Doctores/DoctoresRepositoryList';
 import SearchBarAdd from '../components/SearchBarAdd';
 import Title from '../components/Title';
 import { SafeAreaProvider } from 'react-native-safe-area-context';

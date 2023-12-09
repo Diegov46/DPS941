@@ -12,7 +12,7 @@ const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
 function Tabs() {
   return (
-    <AppNavigator/>
+    <AppNavigator />
   )
 }
 
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName='Welcome'
+        initialRouteName='Tabs'
       >
         <Stack.Screen
           name="Welcome"
