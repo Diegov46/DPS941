@@ -1,1 +1,0 @@
-        especialidad: "Cirugía General",
