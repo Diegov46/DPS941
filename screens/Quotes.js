@@ -5,49 +5,70 @@ import Title from '../components/Title';
 import SearchBarAdd from '../components/SearchBarAdd';
 import CalendarCMP from '../components/Calendar';
 import ListItem from '../components/ListItem';
+import axios from 'axios'; // Importa Axios
 
+      //fecha
+      //hora
+      //paciente.altura
+      //paciente.responsable
+      //paciente.sexo
+      //paciente.nombre
+      //paciente.dui
+      //paciente.edad
+      //estadoCita --Evaluar
+      
 const Quotes = () => {
-    const listaDatos = [
-        { nombre: 'Juan', dui: '123456789', sexo: 'Masculino', hora: '09:00-09:30', fecha: '2023-11-02' },
-        { nombre: 'Maria', dui: '987654321', sexo: 'Femenino', hora: '11:30-12:00', fecha: '2023-11-03' },
-        { nombre: 'Carlos', dui: '567890123', sexo: 'Masculino', hora: '14:45-15:15', fecha: '2023-11-04' },
-        { nombre: 'Ana', dui: '345678901', sexo: 'Femenino', hora: '16:20-16:50', fecha: '2023-11-05' },
-        { nombre: 'Pedro', dui: '012345678', sexo: 'Masculino', hora: '18:00-18:30', fecha: '2023-11-06' },
-        { nombre: 'Laura', dui: '789012345', sexo: 'Femenino', hora: '20:30-21:00', fecha: '2023-11-07' },
-        { nombre: 'Gabriel', dui: '234567890', sexo: 'Masculino', hora: '09:45-10:15', fecha: '2023-11-08' },
-        { nombre: 'Sofía', dui: '890123456', sexo: 'Femenino', hora: '12:15-12:45', fecha: '2023-11-09' },
-        { nombre: 'Luis', dui: '456789012', sexo: 'Masculino', hora: '15:30-16:00', fecha: '2023-11-10' },
-        { nombre: 'Elena', dui: '678901234', sexo: 'Femenino', hora: '17:10-17:40', fecha: '2023-11-11' },
-      ];
-
+  const [listaDatos, setListaDatos] = useState([]);
   const [selectedDate, setSelectedDate] = useState(getTodayDateString());
   const [markedDates, setMarkedDates] = useState({});
   const [filteredDatos, setFilteredDatos] = useState([]);
   const [isModalVisible, setModalVisible] = useState(false);
 
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get('http://192.168.56.1:8080/Cita/All');
+        //console.log('Datos de la API:', response.data);
+        const formattedData = response.data.map(item => ({
+          ...item,
+          fecha: formatDate(item.fecha),
+        }));
+        
+        setListaDatos(formattedData);
+      } catch (error) {
+        console.error('Error al obtener datos de la API:', error);
+        console.error('Error details:', error.message, error.stack);
+      }
+    };
+
+    fetchData();
+  }, []);
+  useEffect(() => {
     // Creamos un objeto con las fechas marcadas en el formato requerido
     const markedDatesObject = {};
+    console.log(listaDatos);
     listaDatos.forEach(item => {
       markedDatesObject[item.fecha] = {
         customStyles: {
           container: {
             backgroundColor: '#fca5b6',
-            elevation: 2
+            elevation: 2,
           },
           text: {
-            color: 'white'
-          }
-        }
-      }
+            color: 'white',
+          },
+        },
+      };
     });
     setMarkedDates(markedDatesObject);
-  }, []);
+  }, [listaDatos]);
 
   useEffect(() => {
     const filtered = listaDatos.filter(item => item.fecha === selectedDate);
+    //console.log(filtered);
     setFilteredDatos(filtered);
   }, [selectedDate]);
+
   
   const showModal = () => setModalVisible(true);
   const hideModal = () => setModalVisible(false);
@@ -60,11 +81,23 @@ const Quotes = () => {
     setSelectedDate(day.dateString);
   };
 
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    const formattedDate = `${year}-${month}-${day}`;
+    return formattedDate;
+  };
+  
+
+  
   return (
     <SafeAreaProvider>
     <View style={styles.container}>
         <Title>Historial de Citas</Title>
         <SearchBarAdd placeholderText="Encontrar un paciente" showModal={showModal} />
+        {/** Buscar por dui o por paciente*/}
         <StatusBar style="auto" />
       <CalendarCMP onDayPress={onDayPress} markedDates={markedDates} />
       <Text style={styles.fecha}>{`Fecha: ${selectedDate}`}</Text>
