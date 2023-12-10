@@ -4,6 +4,7 @@ import RepositoryList from '../components/doct/RepositoryList';
 import SearchBarAdd from '../components/SearchBarAdd';
 import Title from '../components/Title';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const showModal = () => setModalVisible(true);
 const hideModal = () => setModalVisible(false);
@@ -12,12 +13,23 @@ const onPressAddButton = () => {
     showModal();
 };
 
+
+
 const Doctors = () => {
 
+    const [usuario, setUsuario] = useState(); 
+
+    const recuperarDatos = async () => {
+        setUsuario(await AsyncStorage.getItem('usuario'));
+    };
+
+    useEffect(()=>{
+        recuperarDatos();
+    },[]);
     return (
         <SafeAreaProvider>
             <View style={styles.title}>
-                <Title>Doctores</Title>
+                <Title>Bienvenido {usuario}</Title>
                 <Text> </Text>
             </View>
             <View style={styles.container}>

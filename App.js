@@ -4,8 +4,7 @@ import AppNavigator from './navigation/navigator';
 import { Login, Welcome, Register } from './screens';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import Doctors from './screens/Doctors';
-import { FontAwesome, Ionicons, MaterialIcons } from '@expo/vector-icons';
+import 'expo-dev-client';
 
 const Stack = createNativeStackNavigator();
 //{isAuthenticated ? <AppNavigator /> : <Welcome />}

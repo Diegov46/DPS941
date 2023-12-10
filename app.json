@@ -21,11 +21,21 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
-      }
+      },
+      "googleServicesFile": "./google-services.json",
+      "package": "com.dsp.asilo"
     },
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "scheme":"dps"
+    "scheme": "dps",
+    "plugins": [
+      "@react-native-google-signin/google-signin"
+    ],
+    "extra": {
+      "eas": {
+        "projectId": "9e3e8a48-1c2d-495a-a7ad-fb322b63c563"
+      }
+    }
   }
 }

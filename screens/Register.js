@@ -1,20 +1,40 @@
 import { View, Text, Image, Pressable, TextInput, TouchableOpacity, StyleSheet, Button, Alert } from 'react-native'
 import React, { useState, Component } from 'react'
-import { SafeAreaView } from "react-native-safe-area-context";
-import { FontAwesome } from '@expo/vector-icons';
-import SelectDropdown from 'react-native-select-dropdown'
+import SelectDropdown from 'react-native-select-dropdown';
+import axios from 'axios'; // Importa Axios
 
-const Register = ({navigation}) => {
+const Register = ({ navigation }) => {
 
-    const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [postData, setPostData] = useState({
+        // Inicializa tu objeto de datos aquí
+        nombre: '',
+        email: '',
+        pass: '',
+        tipoUsuario: '',
+        status: ''
+    });
     const genders = ["Masculino", "Femenino", "Otros"];
 
     const login = (username, password) => {
         Alert.alert(`Usuario creado ${username}, ${password}`)
     }
+
+    const handlePostRequest = async () => {
+        try {
+            postData.tipoUsuario='1';
+            postData.status='1';
+            console.log(postData)
+            const response = await axios.post('http://192.168.0.11:8080/Usuario/Save', postData);
+
+            // Maneja la respuesta exitosa aquí
+            Alert.alert('Éxito', 'Solicitud POST exitosa');
+            console.log('Respuesta del servidor:', response.data);
+        } catch (error) {
+            // Maneja errores aquí
+            Alert.alert('Error', 'Hubo un error en la solicitud POST');
+            console.error('Error de solicitud POST:', error);
+        }
+    };
 
     return (
 
@@ -29,14 +49,12 @@ const Register = ({navigation}) => {
                 <Image source={require("../assets/createAccount.png")} style={styles.img_login} />
             </View>
             <View style={styles.loginContainer}>
-                <TextInput style={styles.textInputLogin} placeholder='correo' value={email}
-                    onChangeText={(text) => setEmail(text)} autoCapitalize='none' />
-                <TextInput style={styles.textInputLogin} placeholder='contraseña' value={password} secureTextEntry={true}
-                    onChangeText={(text) => setPassword(text)} />
-                <TextInput style={styles.textInputLogin} placeholder='nombre' value={firstName}
-                    onChangeText={(text) => setFirstName(text)} />
-                <TextInput style={styles.textInputLogin} placeholder='apellido' value={lastName}
-                    onChangeText={(text) => setLastName(text)} />
+                <TextInput style={styles.textInputLogin} placeholder='correo' value={postData.email}
+                    onChangeText={(text) => setPostData({ ...postData, email: text })} autoCapitalize='none' />
+                <TextInput style={styles.textInputLogin} placeholder='contraseña' value={postData.pass} secureTextEntry={true}
+                    onChangeText={(text) => setPostData({ ...postData, pass: text })} />
+                <TextInput style={styles.textInputLogin} placeholder='nombre' value={postData.nombre}
+                    onChangeText={(text) => setPostData({ ...postData, nombre: text })} />
                 <SelectDropdown data={genders} buttonStyle={styles.textInputLogin}
                     defaultButtonText='Genero' buttonTextStyle={{ fontSize: 12, textAlign: 'left' }}
                     onSelect={(selectedItem, index) => {
@@ -54,7 +72,7 @@ const Register = ({navigation}) => {
                     }} />
             </View>
             <View style={styles.containerRegister}>
-                <TouchableOpacity style={styles.loginButton} onPress={() => login(email, password)}>
+                <TouchableOpacity style={styles.loginButton} onPress={handlePostRequest}>
                     <Text style={{ color: "#fff" }}>Registrarse</Text>
                 </TouchableOpacity>
             </View>
