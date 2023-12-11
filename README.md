@@ -13,7 +13,7 @@ Link Trello
 https://trello.com/invite/b/1KDcAdgB/ATTI85196f5f96a29913351d94ec7eb2bff8B3D298AC/asilodps
 
 Video explicando funcionamiento FrontEnd
-https://acortar.link/sLYan1
+https://drive.google.com/drive/folders/1ZmtMH2WuyNlN1HBgGG6UVkcNj9MX4wnE?usp=sharing
 
 Licencia de proyecto:
 
