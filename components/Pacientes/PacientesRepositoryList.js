@@ -11,7 +11,7 @@ const RepositoryList = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://localhost:8080/Pacientes/All");
+                const response = await fetch("http://192.168.1.41:8080/Pacientes/All");
                 if (!response.ok) {
                     throw new Error("Error al obtener datos de la API");
                 }

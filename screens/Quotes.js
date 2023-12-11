@@ -25,7 +25,7 @@ const Quotes = () => {
   const [isModalVisible, setModalVisible] = useState(false);
   const [open, setOpen] = useState(false);
   const [value, setValue] = useState(null);
-  const url = "localhost:8080"
+  const url = "192.168.1.41:8080"
 
   // Campos del formulario
   const [selectedDateForm, setSelectedDateForm] = useState('');
